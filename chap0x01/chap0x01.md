@@ -110,7 +110,7 @@
 
             find . -type f -print0 | xargs -0 md5sum > md5sum.txt
     
-    - 封闭改动后的目录到.iso,会提示没有mkisofs，需先安装`genisoimage`
+    - 封闭改动后的目录到.iso，会提示没有mkisofs，需先安装`genisoimage`
 
             apt-get install genisoimage
 
