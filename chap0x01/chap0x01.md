@@ -26,21 +26,21 @@
 
             cat /etc/network/interfaces
 
-        ![](/img/2-3.PNG)
+        ![](img/2-3.PNG)
     
     - 查看文件内容提示的路径上的文件
 
-        ![](/img/2-4.PNG)
+        ![](img/2-4.PNG)
 
     - 复制该文件，并重命名和修改其中部分内容
 
-        ![](/img/2-5.PNG)
+        ![](img/2-5.PNG)
     
     - 让新配置生效，再执行`ifconfig`可以看到第二块网卡，并且系统重新开机后自动启用和获得IP
 
             sudo netplan apply
         
-        ![](/img/2-6.PNG)
+        ![](img/2-6.PNG)
 
 2. 如何使用sftp在虚拟机和宿主机之间传输文件？
 
@@ -60,9 +60,9 @@
             # put iso所在路径 想要存放文件的虚拟机路径
             put D:/ubuntu-18.04.1-server-amd64.iso /home/lycheng
         
-        ![](/img/3-1.PNG)
+        ![](img/3-1.PNG)
 
-        ![](/img/3-2.PNG)
+        ![](img/3-2.PNG)
         
 3. 如何配置无人值守安装iso并在Virtualbox中完成自动化安装
 
@@ -96,13 +96,13 @@
             kernel /install/vmlinuz
             append  file=/cdrom/preseed/ubuntu-server-autoinstall.seed debian-installer/locale=en_US console-setup/layoutcode=us keyboard-configuration/layoutcode=us console-setup/ask_detect=false localechooser/translation/warn-light=true localechooser/translation/warn-severe=true initrd=/install/initrd.gz root=/dev/ram rw quiet
         
-        ![](/img/1-1.PNG)
+        ![](img/1-1.PNG)
         
     - 将配置完成的ubuntu-server-autoinstall.seed的移到 ~/cd/preseed 目录中
 
     - 修改isolinux/isolinux.cfg，增加内容timeout 10
 
-        ![](/img/1-2.PNG)
+        ![](img/1-2.PNG)
     
     - 重新生成md5sum.txt，由于权限不够，所以先对要操作的文件进行提权
 
@@ -138,43 +138,43 @@
 
 - 选择支持的地点；跳过语言支持的选项
 
-![](/img/4-1.PNG)
+![](img/4-1.PNG)
 
 - 增加链接超时设置，并修改时间为5s；增加dhcp超时设置，并修改时间为5s；启用手工配置网络选项
 
-![](/img/4-2.PNG)
+![](img/4-2.PNG)
 
 - 设置IP地址；设置网管；设置域名服务器；设置弹窗确认为true
 
-![](/img/4-3.PNG)
+![](img/4-3.PNG)
 
 - 设置默认主机名；设置默认域名；启用强制主机名为`isc-vm-host`
 
-![](/img/4-4.PNG)
+![](img/4-4.PNG)
 
 - 设置用户名和密码
 
-![](/img/4-5.PNG)
+![](img/4-5.PNG)
 
 - 设置时区为上海；关闭时钟校准
 
-![](/img/4-6.PNG)
+![](img/4-6.PNG)
 
 - 自动选取最大空闲分区
 
-![](/img/4-7.PNG)
+![](img/4-7.PNG)
 
 - LVM分区，选择尽可能多的分区；更改分区策略为`multi`
 
-![](/img/4-8.PNG)
+![](img/4-8.PNG)
 
 - 不使用网络镜像
 
-![](/img/4-9.PNG)
+![](img/4-9.PNG)
 
 - 选择安装模式为server；安装openssh-server；设置在debootstrap后不进行自动更新；设置自动进行安全更新
 
-![](/img/4-10.PNG)
+![](img/4-10.PNG)
 
 ## 参考资料
 
