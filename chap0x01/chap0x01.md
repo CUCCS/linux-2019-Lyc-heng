@@ -72,7 +72,7 @@
     
     - 挂载iso镜像文件到该目录
 
-            mount -o loop ubuntu-16.04.1-server-amd64.iso loopdir
+            mount -o loop ubuntu-18.04.1-server-amd64.iso loopdir
 
     - 创建一个工作目录用于克隆光盘内容
 
@@ -129,7 +129,7 @@
             # get 目标文件目录 本地文件目录
             get /home/lycheng/cd/custom.iso D:/
     
-    - 利用custom.iso进行无人值守安装，[安装过程](replay.mp4)由视频形式给出
+    - 利用custom.iso进行无人值守安装，[安装过程](https://www.bilibili.com/video/av46324229/)由视频形式给出
 
                 
 4. ubuntu-server-autoinstall.seed与[官方示例](https://help.ubuntu.com/lts/installation-guide/example-preseed.txt)对比
@@ -144,7 +144,7 @@
 
 ![](img/4-2.PNG)
 
-- 设置IP地址；设置网管；设置域名服务器；设置弹窗确认为true
+- 设置IP地址；设置网关；设置域名服务器；设置弹窗确认为true
 
 ![](img/4-3.PNG)
 
@@ -175,6 +175,10 @@
 - 选择安装模式为server；安装openssh-server；设置在debootstrap后不进行自动更新；设置自动进行安全更新
 
 ![](img/4-10.PNG)
+
+## 操作视频
+
+[无人值守安装iso实验视频](https://www.bilibili.com/video/av46324229/)
 
 ## 参考资料
 
