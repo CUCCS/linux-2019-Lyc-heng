@@ -136,7 +136,7 @@
 
 - ubuntu-18.04.2-desktop-amd64
 
-    - 在该版本下有查询后发现有`networking.service`
+    - 在该版本下查询后发现有`networking.service`
 
     - 在`networking.service`添加`ExecStartPost=/bin/bash 脚本路径`和`ExecStopPost=/bin/bash 脚本路径`
 
@@ -147,6 +147,12 @@
 7. 如何通过systemd设置实现一个脚本在任何情况下被杀死之后会立即重新启动？实现杀不死？
 
     编写相关的`.service`文件，在文件中的`Service`区块处增加`Restart=always`即可
+
+## 遇到的问题
+
+- 创建挂载目录完毕后，运行`sudo mount -t vboxsf vbshare ~/shared`报错。
+
+    - 解决办法：运行`sudo apt-get install virtualbox-guest-utils`
 
 ## 参考资料
 
