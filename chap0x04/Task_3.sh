@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 printHelp(){
-  printf "usage: ./Task_3.sh [filename][arguments]\n\n"
+  printf "usage: ./Task_3.sh <filename>[arguments]\n\n"
   printf "Arguments:\n"
   printf " -th \t\t Statistics Access source host TOP 100 and the corresponding total number of occurrences,excluding IP and proxy\n"
   printf " -ti \t\t Statistics Access source host TOP 100 and the total number of occurrences corresponding,excluding hosts and prxy\n"
@@ -13,7 +13,7 @@ printHelp(){
 
 topHost(){
   filename="${1}"
-  printf "\n<========Source host TOP 100========>\n"
+  printf "\n<========================Source host TOP 100========================>\n"
   result=$( awk 'BEGIN{FS="\t"} $1 ~ /^(\w+\.)+[a-zA-Z]/ {print $1}' "${filename}" | sort | uniq -c | sort -nr | head -n 100 | awk 'BEGIN{FS=" "} {printf("Source host: %-35s\t Number: %d\n",$2,$1)}')
   echo "${result}"
 
@@ -22,7 +22,7 @@ topHost(){
 
 topIp(){
   filename="${1}"
-  printf "\n<========Source Host TOP IP========>\n"
+  printf "\n<================Source Host TOP IP================>\n"
   result=$(awk 'BEGIN{FS="\t"} $1 ~ /([0-9]{1,3}\.){3}[0-9]{1,3}/ {print $1}' "${filename}" | sort | uniq -c | sort -nr | head -n 100 | awk 'BEGIN{FS=" "} {printf("Source IP: %-15s\t Number: %d\n",$2,$1)}')
   echo "${result}"
 
@@ -31,7 +31,7 @@ topIp(){
 
 topUrl(){
   filename="${1}"
-  printf "\n<========Most frequently accessed URLS TOP 100========>\n"
+  printf "\n<================Most frequently accessed URLS TOP 100================>\n"
   result=$(awk 'BEGIN{FS="\t"} $5 != "/" {print $5}' "${filename}" | sort | uniq -c | sort -nr | head -n 100)
   echo "${result}"
 
@@ -40,7 +40,7 @@ topUrl(){
 
 countResponseStatus(){
   filename="${1}"
-  printf "\n<========Response Status Code condition========>\n"
+  printf "\n<================Response Status Code condition================>\n"
   sum=$(awk 'BEGIN{FS="\t";sum=0} $6 ~ /[0~9]/ {sum=sum+1} END {print sum}' "${filename}")
   result=$(awk 'BEGIN{FS="\t"} $6 ~ /[0~9]/{print $6}' "${filename}" | sort | uniq -c | sort -nr | awk 'BEGIN{FS=" "} {printf("Status code: %-10s\t Number: %-20d\t Percentage:%-4.5f%%\n",$2,$1,100*$1/'"${sum}"')}')
   echo "${result}"
@@ -51,7 +51,7 @@ countResponseStatus(){
 count4XXStatus(){
   filename="${filename}"
 
-  printf "\n<=========4XX status codes URL TOP 10========>\n"
+  printf "\n<=================4XX status codes URL TOP 10=================>\n"
 
   codes=$(awk 'BEGIN{FS="\t"} $6 ~ /[4][0-9][0-9]/ {print $6}' "${filename}" | sort -u )
 

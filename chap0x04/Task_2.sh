@@ -10,7 +10,7 @@ showAll(){
   return 0
 }
 printHelp(){
-  printf "usage: ./Task_2.sh [filename][arguments]\n\n"
+  printf "usage: ./Task_2.sh <filename>[arguments]\n\n"
   printf "Arguments:\n"
   printf " -all \t\t Show all information\n"
   printf " -a \t\t Show age ,including maximum age and mimimum age\n"
