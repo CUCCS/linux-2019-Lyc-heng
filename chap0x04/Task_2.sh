@@ -30,7 +30,7 @@ statsAge(){
   thrity=$(awk ' BEGIN{FS="\t"} $6>30 && NR != 1 {print $6}' "${filename}"|wc -l)
 
   total=$( wc -l < "${filename}")
-  total=$(( "${total}" - 1))
+  total=$(( total - 1))
   printf "\n<====================Age State====================>\n"
   printf "Number of athletes under 20 years of age:%4d people\n" "${twenty}"
   val=$(echo "scale=2;100*$twenty/$total"|bc)
@@ -56,7 +56,7 @@ statsPosition(){
   filename="${1}"
 
   total=$( wc -l < "${filename}")
-  total=$(( "${total}" - 1))
+  total=$(( total - 1))
 
   printf "\n<==========Player's on-site location information==========>\n"
   position=$(awk ' BEGIN {FS="\t"} NR!=1 {if ($5=="Défenseur") {print "Defender"} else {print $5} }' "${filename}" | sort -f | uniq -c )
