@@ -1,0 +1,38 @@
+
+server {
+	listen 127.0.0.1:8888 ssl;
+
+    server_name wp.sec.cuc.edu.cn;
+	root /var/www/html/wordpress;
+    include /etc/nginx/snippets/self-signed.conf;
+
+	# Add index.php to the list if you are using PHP
+	index index.html index.htm index.nginx-debian.html;
+    
+	location / {
+		#try_files $uri $uri/ =404;
+		try_files $uri $uri/ /index.php$is_args$args;
+	}
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
+    }
+}
+
+server {
+    listen 127.0.0.1:5566;
+    server_name dvwa.sec.cuc.edu.cn;
+    
+    root /var/www/html/DVWA;
+    index index.html index.htm index.php index.nginx-debian.html;
+    
+    location / {
+        try_files $uri $uri/ /index.php$is_args$args;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
+    }
+}
+
