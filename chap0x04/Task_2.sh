@@ -42,10 +42,16 @@ statsAge(){
   val=$(echo "scale=2;100*$thrity/$total"|bc)
   printf "Percentage:%4.2f%%\n\n" "${val}"
   printf "\n<==========The oldest player==========>\n"
-  oldest=$(awk ' BEGIN {FS="\t";maxage=0;maxname="none"} NR!=1 {if ($6>maxage) {maxage=$6;maxname=$9} } END {print "age: " maxage;print "name: "maxname}' "${filename}")
+  
+  age=$(awk ' BEGIN {FS="\t";maxage=0} NR!=1 {if($6>maxage) {maxage=$6}} END {print maxage}' "${filename}")
+  printf "Age:%d\n" "${age}"
+  oldest=$(awk ' BEGIN {FS="\t"} NR!=1 {if($6=='"${age}"') {print $9}}' "${filename}")
   echo "${oldest}"
   printf "\n<==========The youngest player==========>\n"
-  youngest=$(awk ' BEGIN {FS="\t";minage=100;minname="none"} NR!=1 {if ($6<minage) {minage=$6;minname=$9} } END {print "age: " minage;print "name: "minname}' "${filename}")
+
+  age=$(awk ' BEGIN {FS="\t";minage=100} NR!=1 {if($6<minage) {minage=$6}} END {print minage}' "${filename}")
+  printf "Age:%d\n" "${age}"
+  youngest=$(awk ' BEGIN {FS="\t"} NR!=1 {if($6=='"${age}"') {print $9}}' "${filename}")
   echo "${youngest}"
 
   return 0
@@ -70,11 +76,17 @@ namelength(){
   filename="${1}"
 
   printf "\n<==========The longest-named player==========>\n"
-  longest=$(awk ' BEGIN {FS="\t";lolen=0;lona="none"} NR!=1 {if (length($9)>lolen) {lolen=length($9);lona=$9} } END {print lona}' "${filename}")
+
+  leng=$(awk ' BEGIN {FS="\t";lolen=0} NR!=1 {if(length($9)>lolen) {lolen=length($9)}} END {print lolen}' "${filename}")
+  printf "Name Length:%d\n" "${leng}"
+  longest=$(awk ' BEGIN {FS="\t"} NR!=1 {if(length($9)=='"${leng}"') {print $9}}' "${filename}")
   echo "${longest}"
 
   printf "\n<==========The shortest-named player==========>\n"
-  shortest=$(awk ' BEGIN {FS="\t";shlen=1000;shna="none"} NR!=1 {if (length($9)<shlen) {shlen=length($9);shna=$9} } END {print shna}' "${filename}")
+
+  leng=$(awk ' BEGIN {FS="\t";shlen=1000} NR!=1 {if(length($9)<shlen) {shlen=length($9)}} END {print shlen}' "${filename}")
+  printf "Name Length:%d\n" "${leng}"
+  shortest=$(awk ' BEGIN {FS="\t"} NR!=1 {if(length($9)=='"${leng}"') {print $9}}' "${filename}")
   echo "${shortest}"
 
   return 0
